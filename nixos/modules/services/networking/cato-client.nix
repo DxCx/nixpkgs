@@ -30,7 +30,12 @@ in
     systemd.services.cato-client = {
       enable = true;
       description = "Cato Networks Linux client - connects tunnel to Cato cloud";
-      after = [ "network.target" ];
+      wants = [
+        "network.target"
+      ];
+      after = [
+        "systemd-resolved.service"
+      ];
 
       serviceConfig = {
         Type = "simple";
